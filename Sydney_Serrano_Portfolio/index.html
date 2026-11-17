@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sydney Serrano | Electrical Engineering Portfolio</title>
+<meta name="description" content="Sydney Serrano is an Electrical Engineering student at UC San Diego building hardware for electronics and robotics systems.">
+<meta name="theme-color" content="#050505">
+<meta property="og:title" content="Sydney Serrano | Electrical Engineering Portfolio">
+<meta property="og:description" content="Electrical Engineering at UC San Diego. Circuits, digital hardware, robotics and embedded systems.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050505'/%3E%3Cpath d='M12 42h12l7-18 9 26 7-18h7' fill='none' stroke='%23c9a24f' stroke-width='6' stroke-linecap='square'/%3E%3C/svg%3E">
+
+<style>
+/* Fonts are bundled in /assets/fonts so they always load (no internet needed) */
+@font-face{font-family:'Archivo Self';src:url(assets/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Figtree Self';src:url(assets/fonts/figtree.woff2) format('woff2');font-weight:300 900;font-display:swap}
+@font-face{font-family:'Fraunces Self';src:url(assets/fonts/fraunces.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Manrope Self';src:url(assets/fonts/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+/* ==========================================================
+   SYDNEY SERRANO PORTFOLIO — black & gold editorial layout
+   Re-theme by editing the colors and fonts in :root.
+   ========================================================== */
+:root{
+  /* THEME COLORS (default = gold). Other palettes are defined further down. */
+  --bg:#050505;
+  --surface:#0e0e0e;
+  --gold:#c9a24f;               /* accent color; name kept for simplicity */
+  --accent-hover:#dcb765;
+  --on-accent:#000;
+  --text:#f4f1ea;
+  --muted:#b6b3ab;
+  --line:rgba(244,241,234,.18);
+  --art-panel:#0b0b0b;
+  --art-grid:rgba(244,241,234,.05);
+  --art-mute:#b6b3ab;
+  --bleed:calc((min(1120px,100vw - 40px) - 100vw) / 2);   /* distance from the content edge to the screen edge */
+  --W:min(calc(100vw - 40px),1080px);       /* width the big headings fit into */
+  --display:'Archivo Self','Archivo','Archivo Black','Arial Black',Impact,sans-serif;
+  /* HEADING FONT SETTINGS (default = wide & bold). Other options are defined further down. */
+  --d-fam:var(--display);
+  --d-wt:900;
+  --d-st:125%;
+  --d-tt:uppercase;
+  --d-ls:0em;
+  --d-var:normal;
+  --k:1;                         /* size multiplier so each font fills the same width */
+  --H1:calc(var(--W) / 10.6 * var(--k));
+  --H2:calc(var(--H1) / 1.75);
+  --font:'Canva Sans','Figtree Self','Avenir Next','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+  --num:'Manrope Self','Manrope','Avenir Next','Segoe UI',system-ui,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:1rem;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3,p,ul{margin-top:0}
+ul{padding-left:1.15rem}
+li{margin-bottom:.5rem}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:var(--gold);color:var(--on-accent);padding:8px 14px;z-index:100;font-weight:700}
+.skip:focus{left:8px}
+.shell{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+
+/* ---------- Typographic building blocks ---------- */
+.spaced{letter-spacing:.36em;text-transform:uppercase;font-size:.72rem;font-weight:500}
+.sub{font-family:var(--font);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:1.08rem;line-height:1.3;color:#fff;margin-bottom:10px}
+.label{color:var(--gold);letter-spacing:.3em;font-size:.72rem;margin-bottom:30px}
+.muted{color:var(--muted)}
+.body-text{font-size:.98rem;color:var(--text);max-width:560px}
+.body-text p{margin-bottom:1em}
+
+/* Single-line display headings */
+.display{margin:0;font-family:var(--d-fam);font-weight:var(--d-wt);font-stretch:var(--d-st);text-transform:var(--d-tt);letter-spacing:var(--d-ls);font-variation-settings:var(--d-var);color:var(--head,var(--gold));line-height:1;
+}
+.display{font-size:clamp(.95rem,3.8vw,3rem);white-space:nowrap}
+.display.center{text-align:center}
+
+/* ---------- Header / footer ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:60px}
+.brand{text-decoration:none;color:var(--text);white-space:nowrap}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{text-decoration:none;color:var(--muted);white-space:nowrap;padding:10px 13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+nav a:hover{color:var(--text)}
+nav a[aria-current="page"]{color:var(--gold);border-bottom-color:var(--gold)}
+footer{padding:34px 0 40px}
+footer .shell{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--muted)}
+footer .spaced{font-size:.62rem;letter-spacing:.4em}
+
+/* ---------- Line-art colors follow the theme ---------- */
+.a-acc{stroke:var(--gold)}
+.a-mute{stroke:var(--art-mute)}
+.a-fill{fill:var(--art-panel)}
+
+/* ---------- Pages ---------- */
+.page{display:none;padding:34px 0 80px}
+.page.active{display:block;animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.section{margin-top:clamp(56px,8vw,96px)}
+.rule{border:0;border-top:1px solid var(--line);margin:0 0 44px}
+
+/* ---------- Photos & art panels ---------- */
+.photo{position:relative;overflow:hidden;background:var(--surface)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.art{background:var(--art-panel);background-image:linear-gradient(var(--art-grid) 1px,transparent 1px),linear-gradient(90deg,var(--art-grid) 1px,transparent 1px);background-size:40px 40px;display:grid;place-items:center;border:1px solid var(--line)}
+.art svg{width:100%;height:100%}
+
+/* ---------- Buttons ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;font:700 .74rem var(--font);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid var(--gold);color:var(--gold);background:transparent;transition:background .2s,color .2s}
+.btn:hover{background:var(--gold);color:var(--on-accent)}
+.btn.solid{background:var(--gold);color:var(--on-accent)}
+.btn.solid:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+
+/* ---------- Tags ---------- */
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);border:1px solid rgba(244,241,234,.3);padding:5px 11px}
+.small-note{font-size:.88rem;color:var(--muted);margin:14px 0 0}
+
+/* ---------- HOME ---------- */
+.cover{text-align:center}
+.cover .display{font-size:clamp(1.2rem,6.1vw,4.75rem)}
+.band{width:min(100%,480px);aspect-ratio:4/3;margin:clamp(14px,2.2vw,26px) auto}
+.band img{object-position:50% 8%}
+.welcome{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,72px);align-items:center}
+.welcome .art{aspect-ratio:16/10}
+
+/* ---------- ABOUT ---------- */
+.about-top{margin-top:32px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:start}
+.about-text .block+.block{margin-top:42px}
+.about-top .photo{aspect-ratio:3/4}
+@media(max-width:640px){.about-top{grid-template-columns:1fr}.about-top .photo{width:min(100%,400px);justify-self:center}}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+
+/* ---------- EDUCATION ---------- */
+.edu{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,6vw,80px)}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+
+/* ---------- EXPERIENCE ---------- */
+.row{display:grid;grid-template-columns:.8fr 1.6fr;gap:clamp(20px,5vw,64px);padding:36px 0;border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row .date,.project .date{color:var(--gold);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;margin-bottom:8px}
+.row .org{color:var(--muted);font-size:.95rem}
+.row ul{color:var(--text);margin:0}
+
+/* ---------- PROJECTS ---------- */
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+.project{display:grid;grid-template-rows:auto 1fr;gap:20px;min-width:0}
+.project > div:last-child{display:flex;flex-direction:column;align-items:flex-start}
+.project :is(.art,.project-cover){aspect-ratio:16/9}
+.project .project-more{margin-top:auto}
+.project .body-text{margin-bottom:12px}
+@media(max-width:640px){.project-grid{grid-template-columns:1fr}}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px clamp(20px,5vw,64px);align-content:start}
+.contact-grid a{text-decoration:none;display:block}
+.contact-grid a .val{color:var(--muted);font-size:.95rem;transition:color .2s;word-break:break-word}
+.contact-grid a:hover .val{color:var(--gold)}
+.contact-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,5vw,72px);align-items:start}
+.resume-thumb{display:block;border:1px solid var(--line);transition:border-color .2s}
+.resume-thumb:hover{border-color:var(--gold)}
+.resume-thumb img{width:100%}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .welcome,.contact-wrap,.edu{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .cols-3{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  :root{--W:calc(100vw - 28px)}
+  .shell{width:calc(100% - 28px)}
+  .nav-wrap{flex-direction:column;align-items:flex-start;gap:0;padding:12px 0 4px}
+  nav{width:100%}
+  .page{padding:20px 0 60px}
+  .contact-grid{grid-template-columns:1fr}
+  .spaced{letter-spacing:.22em}
+  .brand{font-size:.62rem}
+  :root{--H1:calc(var(--W) / 9.8 * var(--k))}
+  .display .l2{white-space:normal}
+  .band{aspect-ratio:4/3}
+}
+
+/* ---------- Alternate palettes (set with <html data-theme="...">) ---------- */
+:root[data-theme="gunmetal"]{--bg:#07090c;--surface:#0f1318;--gold:#8aa3bd;--accent-hover:#a6bbd0;--on-accent:#06090d;--text:#eef2f6;--muted:#a9b4bf;--line:rgba(214,226,238,.18);--art-panel:#0a0d11;--art-grid:rgba(214,226,238,.05);--art-mute:#a9b4bf}
+:root[data-theme="navy"]{--bg:#0a1428;--surface:#101d3a;--gold:#93abc9;--accent-hover:#b1c4dc;--on-accent:#07122a;--text:#eef2f8;--muted:#a5b3c8;--line:rgba(190,208,232,.2);--art-panel:#0c1830;--art-grid:rgba(190,208,232,.07);--art-mute:#9fb0c8}
+:root[data-theme="steel"]{--bg:#081125;--surface:#0e1b38;--gold:#6f98cc;--accent-hover:#8cb0de;--on-accent:#050d20;--text:#f2f5fa;--muted:#a9b6cb;--line:rgba(160,190,230,.22);--art-panel:#0a1630;--art-grid:rgba(160,190,230,.08);--art-mute:#a3b4cc}
+
+:root[data-theme="navygold"]{--bg:#0a1428;--surface:#101d3a;--head:#a3b8d2;--gold:#d3b26b;--accent-hover:#e2c68a;--on-accent:#07122a;--text:#f1f3f7;--muted:#a8b4c7;--line:rgba(190,208,232,.2);--art-panel:#0c1830;--art-grid:rgba(190,208,232,.07);--art-mute:#9fb0c8}
+
+/* ---------- Heading font options (set with <html data-font="...">) ---------- */
+:root[data-font="light"]{--d-wt:600;--k:1.1}
+:root[data-font="manrope"]{--d-fam:'Manrope Self','Manrope','Avenir Next','Segoe UI',system-ui,sans-serif;--d-wt:800;--d-st:100%;--d-ls:-.01em;--k:1.32}
+:root[data-font="serif"]{--d-fam:'Fraunces Self',Georgia,'Times New Roman',serif;--d-wt:600;--d-st:100%;--d-tt:none;--d-ls:-.015em;--d-var:"SOFT" 100;--k:1.7}
+
+/* ---------- THEME PICKER (sample only: delete this block, its HTML and script once you choose) ---------- */
+.theme-picker{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:2px;align-items:stretch;padding:6px 10px;background:rgba(10,12,16,.92);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);max-width:calc(100vw - 20px);overflow-x:auto}
+.theme-picker .pk-row{display:flex;gap:6px;align-items:center;overflow-x:auto}
+.theme-picker b.aa{font-size:1.15rem;line-height:1;width:30px;text-align:center;color:#fff}
+.theme-picker .pk-row span{width:44px;font:700 .6rem var(--font);letter-spacing:.2em;text-transform:uppercase;color:#cfd4da;padding:0 8px 0 4px;white-space:nowrap}
+.theme-picker button{display:flex;align-items:center;gap:8px;font:700 .68rem var(--font);letter-spacing:.06em;color:#eee;background:transparent;border:1px solid transparent;padding:7px 10px;cursor:pointer;white-space:nowrap}
+.theme-picker button[aria-pressed="true"]{border-color:#fff}
+.theme-picker i{display:inline-block;width:22px;height:22px;border:1px solid rgba(255,255,255,.35);position:relative}
+.theme-picker i::after{content:"";position:absolute;right:0;bottom:0;width:11px;height:11px}
+
+.theme-picker button[data-t="gold"] i{background:#050505}.theme-picker button[data-t="gold"] i::after{background:#c9a24f}
+.theme-picker button[data-t="gunmetal"] i{background:#07090c}.theme-picker button[data-t="gunmetal"] i::after{background:#8aa3bd}
+.theme-picker button[data-t="navy"] i{background:#0a1428}.theme-picker button[data-t="navy"] i::after{background:#93abc9}
+.theme-picker button[data-t="steel"] i{background:#081125}.theme-picker button[data-t="steel"] i::after{background:#6f98cc}
+.theme-picker button[data-t="navygold"] i{background:#0a1428}.theme-picker button[data-t="navygold"] i::after{background:linear-gradient(135deg,#a3b8d2 50%,#d3b26b 50%)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+.project-more{margin-top:8px}
+.project-dialog{box-sizing:border-box;width:min(680px,calc(100% - 32px));max-height:85dvh;overflow:auto;padding:clamp(20px,5vw,42px);border:1px solid var(--line);background:var(--art-panel);color:var(--text)}
+.project-dialog::backdrop{background:rgba(0,0,0,.75)}
+.project-dialog form{display:flex;justify-content:flex-end;margin-bottom:12px}
+.project-dialog h3{font-size:clamp(1.35rem,4vw,2rem)}
+.project-dialog h4{margin-bottom:8px}
+.project-dialog figure{margin:24px 0 0}
+.project-dialog img,.project-dialog video{display:block;max-width:100%;height:auto}
+@font-face {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/archivo-black-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/figtree-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/barlow-semi-condensed-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/inter-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/geist-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/space-mono-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Serif Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/dm-serif-text-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-picker.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root[data-font="archivo"]{--d-fam:'Archivo Black';--d-wt:400;--d-st:125%;--font:'Figtree',system-ui,sans-serif}
+:root[data-font="barlow"]{--d-fam:'Barlow Semi Condensed';--d-wt:700;--d-st:100%;--font:'Inter',system-ui,sans-serif}
+:root[data-font="geist"]{--d-fam:'Geist';--d-wt:800;--d-st:100%;--font:'Geist',system-ui,sans-serif}
+:root[data-font="mono"]{--d-fam:'Space Mono';--d-wt:700;--d-st:100%;--font:'Inter',system-ui,sans-serif}
+:root[data-font="dm-serif"]{--d-fam:'DM Serif Text';--d-wt:400;--d-st:100%;--font:'DM Sans',system-ui,sans-serif}
+:root[data-font="mono"] h2.display{font-size:clamp(.9rem,3vw,2.75rem)}
+</style>
+</head>
+
+<body>
+<!-- Reusable line art (drawn in code, no image files) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="art-circuit" viewBox="0 0 400 225">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke="#b6b3ab" stroke-width="2.5" opacity=".8" class="a-mute">
+          <path d="M20 70h95v-35h75M190 35h40v45h65M295 80h85"/>
+          <path d="M20 150h65v30h125M210 180h55v-40h115"/>
+          <path d="M115 70v45h65v25"/>
+          <path d="M300 30v-15h60"/>
+        </g>
+        <g fill="#0b0b0b" stroke="#c9a24f" stroke-width="3.5" class="a-acc a-fill">
+          <circle cx="115" cy="70" r="8"/><circle cx="230" cy="35" r="8"/><circle cx="295" cy="80" r="8"/><circle cx="210" cy="180" r="8"/><circle cx="180" cy="140" r="8"/>
+        </g>
+        <rect x="318" y="118" width="52" height="34" stroke="#b6b3ab" stroke-width="2.5" fill="#101010" class="a-mute a-fill"/>
+        <path d="M326 118v-9M340 118v-9M354 118v-9M326 152v9M340 152v9M354 152v9" stroke="#b6b3ab" stroke-width="2.5" class="a-mute"/>
+      </g>
+    </symbol>
+    <symbol id="art-network" viewBox="0 0 400 225">
+      <g stroke="#b6b3ab" stroke-width="1.3" opacity=".45" class="a-mute">
+        <path d="M70 55L200 40M70 55L200 112M70 55L200 185M70 112L200 40M70 112L200 112M70 112L200 185M70 170L200 40M70 170L200 112M70 170L200 185"/>
+        <path d="M200 40L330 112M200 112L330 112M200 185L330 112"/>
+      </g>
+      <g fill="#0b0b0b" stroke="#b6b3ab" stroke-width="3" class="a-mute a-fill">
+        <circle cx="70" cy="55" r="11"/><circle cx="70" cy="112" r="11"/><circle cx="70" cy="170" r="11"/>
+        <circle cx="200" cy="40" r="11"/><circle cx="200" cy="112" r="11"/><circle cx="200" cy="185" r="11"/>
+      </g>
+      <circle cx="330" cy="112" r="15" fill="#0b0b0b" stroke="#c9a24f" stroke-width="4" class="a-acc a-fill"/>
+    </symbol>
+    <symbol id="art-wave" viewBox="0 0 300 225">
+      <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+        <path d="M20 160h40v-70h40v70h40v-70h40v70h40v-70h40" stroke="#c9a24f" stroke-width="4" class="a-acc"/>
+        <path d="M20 120h260M20 185h260" stroke="#b6b3ab" stroke-width="1.5" opacity=".4" class="a-mute"/>
+        <path d="M20 60c30-40 60 40 90 0s60 40 90 0 60 40 80 0" stroke="#b6b3ab" stroke-width="2.5" opacity=".8" class="a-mute"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="shell nav-wrap">
+    <a class="brand spaced" href="#home">Sydney Serrano · Electrical Engineering</a>
+    <nav aria-label="Main navigation">
+      <a href="#home" data-page="home">Home</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#education" data-page="education">Education</a>
+      <a href="#experience" data-page="experience">Experience</a>
+      <a href="#projects" data-page="projects">Projects</a>
+      <a href="#connect" data-page="connect">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ======================= HOME ======================= -->
+<section class="page active" id="page-home" aria-label="Home">
+  <div class="shell">
+    <div class="cover">
+      <h1 class="display">Sydney Serrano</h1>
+      <div class="photo band">
+        <img src="assets/home-portrait.webp" width="1210" height="908" alt="Sydney Serrano outdoors beneath a tree">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="display">Electrical Engineering Student</h2>
+      <div class="welcome" style="margin-top:38px">
+      <div>
+        <div class="body-text">
+          <h3 class="sub">Hi, I’m Sydney</h3>
+          <p>I’m currently a 3rd year Electrical Engineering transfer student at UC San Diego. I enjoy testing, troubleshooting and documenting how systems work, from analog and digital circuits to robotics and electromechanical projects.</p>
+        </div>
+        <div class="actions">
+          <a class="btn solid" href="#projects">View my projects</a>
+          <a class="btn" href="#about">More about me</a>
+        </div>
+      </div>
+      <div class="art" role="img" aria-label="Line drawing of a circuit board trace">
+        <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid meet"><use href="#art-circuit"/></svg>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================= ABOUT ======================= -->
+<section class="page" id="page-about" aria-label="About">
+  <div class="shell">
+    <h2 class="display">About Me</h2>
+    <div class="about-top">
+      <div class="about-text">
+        <div class="block">
+          <h3 class="sub">My story</h3>
+          <div class="body-text">
+            <p>My path started at UC Santa Cruz, where I studied Computer Engineering with a concentration in Digital Hardware. I transferred to UC San Diego to study Electrical Engineering, building on my interest in circuits, computing and hardware design.</p>
+            <p>Robotics and electromechanical projects showed me how much I enjoy bringing the different parts of a system together.</p>
+          </div>
+        </div>
+        <div class="block">
+          <h3 class="sub">Outside the classroom</h3>
+          <div class="body-text">
+            <p>I’m involved in robotics and engineering communities, including the Association for Computing Machinery and the Society of Women Engineers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo"><img src="assets/about-portrait.webp" width="856" height="1140" loading="lazy" alt="Sydney Serrano in front of the stone bear sculpture"></div>
+    </div>
+
+    <div class="section">
+      <h3 class="sub label">Tools &amp; capabilities</h3>
+      <div class="skills">
+        <div>
+          <h3 class="sub">Programming</h3>
+          <div class="tag-list"><span class="tag">C / C++</span><span class="tag">Python</span><span class="tag">Verilog</span><span class="tag">PyTorch</span><span class="tag">Java</span></div>
+        </div>
+        <div>
+          <h3 class="sub">Hardware</h3>
+          <div class="tag-list"><span class="tag">Circuit analysis</span><span class="tag">Digital logic</span><span class="tag">Arduino</span><span class="tag">PCB design</span><span class="tag">Soldering</span><span class="tag">Breadboarding</span><span class="tag">Oscilloscope</span><span class="tag">Multimeter</span></div>
+        </div>
+        <div>
+          <h3 class="sub">Software &amp; tools</h3>
+          <div class="tag-list"><span class="tag">KiCad</span><span class="tag">Git / GitHub</span><span class="tag">MATLAB</span><span class="tag">SolidWorks</span><span class="tag">AutoCAD</span><span class="tag">Onshape</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span></div>
+          <p class="small-note">Experience with CAD, data visualization and engineering workflows.</p>
+        </div>
+        <div>
+          <h3 class="sub">Professional</h3>
+          <div class="tag-list"><span class="tag">Troubleshooting</span><span class="tag">Documentation</span><span class="tag">Teamwork</span><span class="tag">Communication</span></div>
+          <p class="small-note">Developed through campus IT support, team projects and technical documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EDUCATION ======================= -->
+<section class="page" id="page-education" aria-label="Education">
+  <div class="shell">
+    <h2 class="display">Academic Background</h2>
+
+    <div class="section edu">
+      <div>
+        <div class="num">2026–28</div>
+        <h3 class="sub" style="margin-top:8px">University of California, San Diego</h3>
+        <div class="body-text">
+          <p>B.S. in Electrical Engineering</p>
+          <p class="muted">September 2026 – May 2028 (expected). Transferred from UC Santa Cruz.</p>
+        </div>
+      </div>
+      <div>
+        <div class="num">2024–26</div>
+        <h3 class="sub" style="margin-top:8px">University of California, Santa Cruz</h3>
+        <div class="body-text">
+          <p>B.S. in Computer Engineering, concentration in Digital Hardware</p>
+          <p class="muted">September 2024 – June 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <hr class="rule">
+      <h3 class="sub label">Relevant coursework</h3>
+      <div class="cols-3">
+        <div>
+          <h3 class="sub">Electrical &amp; computer engineering</h3>
+          <div class="tag-list"><span class="tag">Circuit Analysis</span><span class="tag">Digital Logic</span><span class="tag">Electronic Circuits + Lab</span><span class="tag">Physics + Lab</span></div>
+          <p class="small-note">Built and analyzed circuits, measured circuit behavior and compared experimental results with theoretical calculations. Physics covered Mechanics, Electricity &amp; Magnetism, and Waves &amp; Optics.</p>
+        </div>
+        <div>
+          <h3 class="sub">Math &amp; computing</h3>
+          <div class="tag-list"><span class="tag">Discrete Mathematics</span><span class="tag">Multivariable Calculus</span><span class="tag">Programming</span><span class="tag">AI / ML</span></div>
+          <p class="small-note">Calculus I–III, Linear Algebra, ODEs, Probability &amp; Statistics, Discrete Math, C, Python, and Computer Systems &amp; Assembly.</p>
+        </div>
+        <div>
+          <h3 class="sub">Academic interests</h3>
+          <p class="muted" style="margin-bottom:0">Electronics, embedded systems, digital hardware, circuit design, robotics, and the integration of electrical and mechanical systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EXPERIENCE ======================= -->
+<section class="page" id="page-experience" aria-label="Work experience">
+  <div class="shell">
+    <h2 class="display">Work Experience</h2>
+
+    <div class="section">
+      <article class="row">
+        <div>
+          <div class="date">Sept 2026 – Present</div>
+          <div class="org">UC San Diego<br>Division of Extended Studies IT</div>
+        </div>
+        <div>
+          <h3 class="sub">IT Student Technician</h3>
+          <ul>
+            <li>Prepare and configure computers for instructional spaces, including imaging and setting up Windows and macOS systems.</li>
+            <li>Troubleshoot desktop and laptop hardware, operating systems and applications including Microsoft Office, Adobe and Zoom.</li>
+            <li>Document imaging and setup procedures, and assist with software updates, lab reconfigurations and equipment readiness.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="row">
+        <div>
+          <div class="date">May 2025 – June 2026</div>
+          <div class="org">UC Santa Cruz<br>Information Technology Services</div>
+        </div>
+        <div>
+          <h3 class="sub">Learning Consultant</h3>
+          <ul>
+            <li>Provided front-line technical support to students, faculty, staff and teaching assistants across campus learning environments.</li>
+            <li>Diagnosed hardware and software issues across Windows, macOS and Linux, including computers, printers, scanners, peripherals and lab equipment.</li>
+            <li>Supported classroom operations and laboratory technology by resolving issues during instruction and keeping lab spaces organized.</li>
+            <li>Explained troubleshooting steps to users of all experience levels and documented recurring issues and corrective actions.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="row">
+        <div>
+          <div class="date">June 2023 – July 2026</div>
+          <div class="org">Cathedral Catholic<br>K–8 Summer Camps</div>
+        </div>
+        <div>
+          <h3 class="sub">STEM Robotics Instructor (Volunteer)</h3>
+          <ul>
+            <li>Led students in fabrication, integration and testing of underwater robotic systems using DC motors, electrical wiring, propulsion assemblies and mechanical structures.</li>
+            <li>Troubleshot electrical and mechanical performance issues through iterative testing and design revisions.</li>
+            <li>Evaluated propulsion efficiency, buoyancy, stability and system functionality through testing and documentation.</li>
+            <li>Communicated technical concepts and troubleshooting steps to students of varying ages and skill levels.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+      <div class="section" style="margin-top:clamp(48px,7vw,80px)">
+        <h3 class="sub label">Leadership &amp; activities</h3>
+        <article class="row" style="border-bottom:1px solid var(--line)">
+          <div>
+            <div class="date">2022 – 2024</div>
+            <div class="org">Cathedral Catholic<br>Robotics Team</div>
+          </div>
+          <div>
+            <h3 class="sub">Electrical Team Lead</h3>
+            <ul>
+              <li>Led electrical subsystem development, wiring, troubleshooting and integration of robotic systems.</li>
+              <li>Collaborated with mechanical and software subteams to integrate electrical subsystems and improve robotic performance.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="row" style="border-bottom:1px solid var(--line)">
+          <div><div class="date">2024 – Present</div></div>
+          <div><h3 class="sub" style="margin:0">Association for Computing Machinery · Member</h3></div>
+        </article>
+        <article class="row" style="border-bottom:1px solid var(--line)">
+          <div><div class="date">2024 – Present</div></div>
+          <div><h3 class="sub" style="margin:0">Society of Women Engineers · Member</h3></div>
+        </article>
+      </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECTS ======================= -->
+<section class="page" id="page-projects" aria-label="Projects">
+  <div class="shell">
+    <h2 class="display">Projects</h2>
+
+    <div class="section">
+      <div class="project-grid">
+        <article class="project">
+          <div class="art" role="img" aria-label="Line drawing of a neural network"><svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid meet"><use href="#art-network"/></svg></div>
+          <div>
+            <div class="date">Course project · Feb – Mar 2025</div>
+            <h3 class="sub" style="font-size:1.4rem">Video Game Genre Classification RNN</h3>
+            <div class="body-text">
+              <p>Trained a character-level neural network in PyTorch to classify video game genres.</p>
+            </div>
+            <button class="btn project-more" type="button" data-project="genre-classifier" aria-haspopup="dialog" aria-controls="genre-classifier" aria-label="Learn more about Video Game Genre Classification RNN">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="genre-classifier" aria-labelledby="genre-classifier-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="genre-classifier-title">Video Game Genre Classification RNN</h3>
+          <p>Developed and trained a character-level recurrent neural network in Python and PyTorch for text classification. Processed more than 100,000 data samples with Pandas and visualized model behavior using Matplotlib.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>Text preprocessing with Pandas, recurrent neural network training, and visualization with Matplotlib.</p>
+          <div class="tag-list"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Pandas</span></div>
+          <!-- Add project images and videos here using figure and video elements. -->
+        </dialog>
+
+        <article class="project">
+          <div class="photo project-cover"><img src="assets/electric-bicycle.webp" width="1440" height="1080" loading="lazy" alt="Electric bicycle conversion showing the motor, chain drive, and rear wheel"></div>
+          <div>
+            <div class="date">Capstone project · Aug 2023 – May 2024</div>
+            <h3 class="sub" style="font-size:1.4rem">Electric Bicycle Conversion</h3>
+            <div class="body-text">
+              <p>Designed and tested a pedal-assist electric drive system for a bicycle.</p>
+            </div>
+            <button class="btn project-more" type="button" data-project="electric-bicycle" aria-haspopup="dialog" aria-controls="electric-bicycle" aria-label="Learn more about Electric Bicycle Conversion">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="electric-bicycle" aria-labelledby="electric-bicycle-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="electric-bicycle-title">Electric Bicycle Conversion</h3>
+          <p>Designed and integrated a pedal-assist electric drive system combining sensors, electrical circuits, motor controllers and drivetrain components. Created electrical schematics, fabricated custom parts with CAD and 3D printing, and completed 50+ validation tests.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>Electrical schematic design, sensor and motor controller integration, CAD, 3D printing, and validation testing.</p>
+          <div class="tag-list"><span class="tag">CAD</span><span class="tag">3D Printing</span><span class="tag">Electrical Testing</span></div>
+          <!-- Add project images and videos here using figure and video elements. -->
+        </dialog>
+
+        <article class="project">
+          <div class="art" role="img" aria-label="Line drawing of an oscilloscope waveform"><svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid meet"><use href="#art-wave"/></svg></div>
+          <div>
+            <div class="date">Coursework · April – June 2026</div>
+            <h3 class="sub" style="font-size:1.4rem">Circuit Analysis Lab</h3>
+            <div class="body-text">
+              <p>Built and tested analog circuits, then compared measured responses with theoretical predictions.</p>
+            </div>
+            <button class="btn project-more" type="button" data-project="analog-circuits" aria-haspopup="dialog" aria-controls="analog-circuits" aria-label="Learn more about Circuit Analysis Lab">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="analog-circuits" aria-labelledby="analog-circuits-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="analog-circuits-title">Circuit Analysis Lab</h3>
+          <p>Built, tested and analyzed analog circuits including RC/RL transient circuits, operational amplifier circuits, active filters and source conversion networks. Used oscilloscopes, function generators, digital multimeters and DC power supplies to measure voltage, current, gain, frequency response and phase behavior, then compared the results with theoretical calculations in technical lab reports.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>Circuit prototyping, oscilloscope measurements, frequency and phase analysis, and technical reporting.</p>
+          <div class="tag-list"><span class="tag">Op-Amps</span><span class="tag">Active Filters</span><span class="tag">Oscilloscope</span><span class="tag">Lab Reports</span></div>
+          <!-- Add project images and videos here using figure and video elements. -->
+        </dialog>
+
+        <article class="project">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 400 225"><use href="#art-wave"/></svg></div>
+          <div>
+            <h3 class="sub" style="font-size:1.4rem">Digital Circuit Lab</h3>
+            <div class="body-text"><p>Verilog design and simulation of combinational and sequential digital circuits.</p></div>
+            <button class="btn project-more" type="button" data-project="digital-circuit-lab" aria-haspopup="dialog" aria-controls="digital-circuit-lab" aria-label="Learn more about Digital Circuit Lab">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="digital-circuit-lab" aria-labelledby="digital-circuit-lab-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="digital-circuit-lab-title">Digital Circuit Lab</h3>
+          <p>Lab exercises included logic design and verifying flip-flops and registers through simulation waveforms.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>Verilog, testbenches, and timing waveform analysis.</p>
+        </dialog>
+
+        <article class="project">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 400 225"><use href="#art-wave"/></svg></div>
+          <div>
+            <h3 class="sub" style="font-size:1.4rem">ESP32 Speaker</h3>
+            <div class="body-text"><p>An ESP32-based speaker project.</p></div>
+            <button class="btn project-more" type="button" data-project="esp32-amplifier" aria-haspopup="dialog" aria-controls="esp32-amplifier" aria-label="Learn more about ESP32 Speaker">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="esp32-amplifier" aria-labelledby="esp32-amplifier-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="esp32-amplifier-title">ESP32 Speaker</h3>
+          <p>This project explores audio playback using an ESP32.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>ESP32 development and audio hardware integration.</p>
+        </dialog>
+
+        <article class="project">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 400 225"><use href="#art-circuit"/></svg></div>
+          <div>
+            <h3 class="sub" style="font-size:1.4rem">Line Following Robot</h3>
+            <div class="body-text"><p>A robotics project focused on following a marked path.</p></div>
+            <button class="btn project-more" type="button" data-project="line-following-robot" aria-haspopup="dialog" aria-controls="line-following-robot" aria-label="Learn more about Line Following Robot">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="line-following-robot" aria-labelledby="line-following-robot-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="line-following-robot-title">Line Following Robot</h3>
+          <p>The project combines line sensing with steering and motor control.</p>
+          <h4 class="sub">Skills developed</h4>
+          <p>Sensor integration, motor control, and robotics troubleshooting.</p>
+        </dialog>
+
+        <article class="project">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 400 225"><use href="#art-circuit"/></svg></div>
+          <div>
+            <h3 class="sub" style="font-size:1.4rem">3D Printing</h3>
+            <div class="body-text"><p>3D printing parts and projects</p></div>
+            <button class="btn project-more" type="button" data-project="3d-printing" aria-haspopup="dialog" aria-controls="3d-printing" aria-label="Learn more about 3D Printing">Learn More <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <dialog class="project-dialog" id="3d-printing" aria-labelledby="3d-printing-title">
+          <form method="dialog"><button type="submit" class="btn" autofocus>Close</button></form>
+          <h3 class="sub" id="3d-printing-title">3D Printing</h3>
+        </dialog>
+
+      </div>
+
+      <div class="actions" style="margin-top:56px">
+        <a class="btn" href="https://github.com/SydSerr" target="_blank" rel="noopener">More on GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section class="page" id="page-connect" aria-label="Resume and contact">
+  <div class="shell">
+    <h2 class="display">Connect With Me</h2>
+    <div class="section contact-wrap" style="margin-top:clamp(40px,6vw,72px)">
+      <div>
+        <div class="contact-grid">
+          <a href="mailto:sydneroo1@gmail.com"><h3 class="sub">Email</h3><span class="val">sydneroo1@gmail.com</span></a>
+          <a href="https://www.linkedin.com/in/sydney-serrano-9421b827a" target="_blank" rel="noopener"><h3 class="sub">LinkedIn</h3><span class="val">sydney-serrano</span></a>
+          <a href="https://github.com/SydSerr" target="_blank" rel="noopener"><h3 class="sub">GitHub</h3><span class="val">SydSerr</span></a>
+          <a href="Sydney_Serrano_Resume.pdf" target="_blank" rel="noopener"><h3 class="sub">Resume</h3><span class="val">View PDF ↗</span></a>
+        </div>
+      </div>
+      <a class="resume-thumb" href="Sydney_Serrano_Resume.pdf" target="_blank" rel="noopener" aria-label="Open Sydney Serrano’s resume as a PDF">
+        <img src="assets/resume-preview.jpg" width="674" height="872" loading="lazy" alt="Preview of Sydney Serrano’s resume">
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <span class="spaced">© <span id="year">2026</span> Sydney Serrano</span>
+    <span class="spaced">Building the future, one circuit at a time</span>
+  </div>
+</footer>
+
+<!-- THEME PICKER (sample only) -->
+<div class="theme-picker" role="group" aria-label="Color and font samples">
+  <div class="pk-row">
+    <span>Color</span>
+    <button type="button" data-t="gold" aria-pressed="true"><i></i>1 Gold</button>
+    <button type="button" data-t="gunmetal" aria-pressed="false"><i></i>2 Gunmetal on black</button>
+    <button type="button" data-t="navy" aria-pressed="false"><i></i>3 Navy &amp; gunmetal</button>
+    <button type="button" data-t="steel" aria-pressed="false"><i></i>4 Navy &amp; steel blue</button>
+    <button type="button" data-t="navygold" aria-pressed="false"><i></i>5 Navy, gunmetal &amp; gold touch</button>
+  </div>
+  <div class="pk-row">
+    <span>Font</span>
+    <button type="button" data-f="wide" aria-pressed="true"><b class="aa" style="font-family:var(--display);font-weight:900;font-stretch:125%">Aa</b>Wide &amp; bold</button>
+    <button type="button" data-f="light" aria-pressed="false"><b class="aa" style="font-family:var(--display);font-weight:600;font-stretch:125%">Aa</b>Wide &amp; lighter</button>
+    <button type="button" data-f="archivo" aria-pressed="false"><b class="aa" style="font-family:'Archivo Black';font-weight:400" aria-hidden="true">Aa</b>Archivo Black + Figtree</button>
+    <button type="button" data-f="barlow" aria-pressed="false"><b class="aa" style="font-family:'Barlow Semi Condensed';font-weight:700" aria-hidden="true">Aa</b>Barlow Semi Condensed + Inter</button>
+    <button type="button" data-f="geist" aria-pressed="false"><b class="aa" style="font-family:'Geist';font-weight:800" aria-hidden="true">Aa</b>Geist + Geist</button>
+    <button type="button" data-f="mono" aria-pressed="false"><b class="aa" style="font-family:'Space Mono';font-weight:700" aria-hidden="true">Aa</b>Space Mono + Inter</button>
+    <button type="button" data-f="dm-serif" aria-pressed="false"><b class="aa" style="font-family:'DM Serif Text';font-weight:400" aria-hidden="true">Aa</b>DM Serif Text + DM Sans</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var ids = pages.map(function(p){ return p.id.replace('page-',''); });
+  var titles = {home:'Home',about:'About',education:'Education',experience:'Experience',projects:'Projects',connect:'Contact'};
+  var base = 'Sydney Serrano | Electrical Engineering Portfolio';
+  var first = true;
+
+  function show(id){
+    if (ids.indexOf(id) === -1) id = 'home';
+    pages.forEach(function(p){ p.classList.toggle('active', p.id === 'page-' + id); });
+    links.forEach(function(a){
+      if (a.dataset.page === id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    document.title = id === 'home' ? base : titles[id] + ' · Sydney Serrano';
+    if (!first) {
+      window.scrollTo(0,0);
+      document.getElementById('main').focus({preventScroll:true});
+    }
+    first = false;
+    var active = document.querySelector('nav a[aria-current="page"]');
+    if (active && active.scrollIntoView) active.scrollIntoView({inline:'center',block:'nearest'});
+  }
+
+  function route(){ show(location.hash.replace('#','')); }
+  window.addEventListener('hashchange', route);
+  document.getElementById('year').textContent = new Date().getFullYear();
+  route();
+})();
+
+(function(){ /* THEME PICKER (sample only) */
+  var tBtns=document.querySelectorAll('.theme-picker button[data-t]');
+  var fBtns=document.querySelectorAll('.theme-picker button[data-f]');
+  var colors={gold:'#050505',gunmetal:'#07090c',navy:'#0a1428',steel:'#081125',navygold:'#0a1428'};
+  var fonts={wide:1,light:1,archivo:1,barlow:1,geist:1,mono:1,"dm-serif":1};
+  function setT(t){
+    if(t==='gold') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme',t);
+    tBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.t===t ? 'true':'false'); });
+    var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content',colors[t]);
+    try{ localStorage.setItem('sydney-theme',t); }catch(e){}
+  }
+  function setF(f){
+    if(f==='wide') document.documentElement.removeAttribute('data-font'); else document.documentElement.setAttribute('data-font',f);
+    fBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.f===f ? 'true':'false'); });
+    try{ localStorage.setItem('sydney-font',f); }catch(e){}
+  }
+  tBtns.forEach(function(b){ b.addEventListener('click',function(){ setT(b.dataset.t); }); });
+  fBtns.forEach(function(b){ b.addEventListener('click',function(){ setF(b.dataset.f); }); });
+  var st=null, sf=null; try{ st=localStorage.getItem('sydney-theme'); sf=localStorage.getItem('sydney-font'); }catch(e){}
+  if(st && colors[st]) setT(st);
+  if(sf && fonts[sf]) setF(sf);
+})();
+</script>
+
+<script>
+  document.querySelectorAll('[data-project]').forEach(button => {
+    const dialog = document.getElementById(button.dataset.project);
+    button.addEventListener('click', () => dialog.showModal());
+    dialog.addEventListener('close', () => {
+      dialog.querySelectorAll('video, audio').forEach(media => media.pause());
+      button.focus();
+    });
+  });
+</script>
+</body>
+</html>
